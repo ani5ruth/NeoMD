@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    // current movie details
+    div.my-3.p-3.bg-white.rounded.shadow-sm
+        h4.border-bottom.border-gray.pb-2.mb-0= details.title+" ("+details.year+")"
+
+        table.table.table-borderless
+            tbody
+                tr
+                    td(rowspan='2')
+                        img(src = details.poster, style = 'border-radius: 5%;')
+                    td(colspan='3')
+                        h5 Plot
+                        ul.list-group
+                            li.list-group-item
+                                h6= details.plot
+                tr
+                    td
+                        h5 Director(s)
+                        ul.list-group
+                            each director in details.directors
+                                li.list-group-item
+                                    h6= director
+                    td
+                        h5 Cast
+                        ul.list-group
+                            each actor in details.cast
+                                li.list-group-item
+                                    h6= actor
+                    td
+                        h5 Genres
+                        ul.list-group
+                            each genre in details.genres
+                                li.list-group-item
+                                    a(href="/movies/genre/"+genre)= genre
+    
+    // similar movies
+    div.my-3.p-3.bg-white.rounded.shadow-sm(style = 'overflow-x: auto;')
+        h5.border-bottom.border-gray.pb-2.mb-0 Similar Movies
+        table.table.table-borderless
+            tbody
+                tr
+                    each details in simMovies
+                        td
+                            a(href="/movies/id/"+details.imdbId)
+                                img(src = details.poster, style = 'border-radius: 5%;')

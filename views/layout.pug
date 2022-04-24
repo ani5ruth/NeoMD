@@ -1,0 +1,40 @@
+doctype html
+
+html
+    head
+        title #{title}
+        link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    body.bg-dark
+        nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+            a.navbar-brand(href='/') NEOMDb
+            button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation')
+                span.navbar-toggler-icon
+            #navbarsExampleDefault.collapse.navbar-collapse
+                ul.navbar-nav.mr-auto
+                    li.nav-item
+                        a.nav-link(href='/movies')
+                            | Popular Movies 
+                            span.sr-only (current)
+                    li.nav-item
+                        a.nav-link(href='/')
+                            | Recommendations
+                            span.sr-only (current)
+                    li.nav-item
+                        a.nav-link(href='/')
+                            | Your Ratings
+                            span.sr-only (current)
+                    li.nav-item
+                        a.nav-link(href='/')
+                            | Your Watchlist
+                            span.sr-only (current)
+
+                form.form-inline.my-2.my-lg-0(action='/movies/search' method='POST')
+                    input.form-control.mr-sm-2(name='title' type='text' placeholder='Find movies' aria-label='Search')
+                    button.btn.btn-secondary.my-2.my-sm-0(type='submit') Search
+
+
+        main.container
+            block content
+
+        script(src="/bower_components/jquery/dist/jquery.js")
+        script(src="/bower_components/bootstrap/dist/js/bootstrap.js")
